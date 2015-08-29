@@ -11,7 +11,7 @@
             </conditions>
             <actions>
                 <action id="-2" name="Set Y" sid="5711755227913622" type="ZiziLevant">
-                    <param id="0" name="Y">self.Y + 120</param>
+                    <param id="0" name="Y">self.Y - 120</param>
                 </action>
             </actions>
         </event-block>
