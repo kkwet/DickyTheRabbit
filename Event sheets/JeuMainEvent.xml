@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>JeuMainEvent</name>
+    <events>
+        <variable comment="La largeur du grid sur le layout" constant="1" name="TAILLECARREAUWIDTH" sid="4740314290254717" static="0" type="number">32</variable>
+        <include>SortieEvent</include>
+        <include>PontEvent</include>
+        <include>CameraEvent</include>
+        <include>JeuTouchEvent</include>
+        <include>JeuHeroEvent</include>
+        <include>ZiziLevantEvent</include>
+        <event-block sid="6446287637431429">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8541623834948495" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="2832287797061081" type="Function">
+                    <param id="0" name="Name">&quot;heroMarcherDroite&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

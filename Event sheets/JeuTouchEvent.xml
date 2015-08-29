@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>JeuTouchEvent</name>
+    <events>
+        <variable comment="ID of the touch using to pan" constant="0" name="TouchPanID" sid="9185676230946931" static="0" type="number">-1</variable>
+        <variable comment="ID of second touch using to zoom" constant="0" name="TouchZoomID" sid="7900128823342229" static="0" type="number">-1</variable>
+        <variable comment="Initial X position of touch (for pan)" constant="0" name="TouchLastX" sid="6663854376482404" static="0" type="number">0</variable>
+        <variable comment="Initial Y position of touch (for pan)" constant="0" name="TouchLastY" sid="9648195591863417" static="0" type="number">0</variable>
+        <variable comment="Initial distance apart of touches (for zoom)" constant="0" name="TouchStartDistance" sid="3443129402155754" static="0" type="number">0</variable>
+        <variable comment="Initial scale of layout (for zoom)" constant="0" name="InitialScale" sid="3691287748401774" static="0" type="number">0</variable>
+        <event-block sid="7221430655037445">
+            <conditions>
+                <condition id="0" name="On any touch start" sid="8071892644337544" type="Touch" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>If the user touches, and we&apos;re not already panning with a different touch, store the touch ID and the position of the touch. Note we get the position of the touch from a separate layer which has a parallax of 0, otherwise panning the view would alter the reported touch position, resulting in confusing feedback loops.</comment>
+                <event-block sid="9898504393531427">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="1405273039765612" type="System">
+                            <param id="0" name="Variable">TouchPanID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="9329141971788015" type="System">
+                            <param id="0" name="Variable">TouchLastX</param>
+                            <param id="1" name="Value">Touch.X(&quot;UI&quot;)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5042983125482255" type="System">
+                            <param id="0" name="Variable">TouchLastY</param>
+                            <param id="1" name="Value">Touch.Y(&quot;UI&quot;)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="1672700729293584" type="System">
+                            <param id="0" name="Variable">TouchPanID</param>
+                            <param id="1" name="Value">Touch.TouchID</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Otherwise if we&apos;re already panning with a touch, this must be a second touch. Use this second touch to zoom the display. We need to remember the starting distance apart of the touches, as well as the starting layout scale, in order to calculate the zoom. Also store the mid-point of the touches, so we can still pan while zooming.</comment>
+                <event-block sid="5149128897273726">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="5939913099073148" type="System" />
+                        <condition id="-14" name="Compare variable" sid="9461850450424294" type="System">
+                            <param id="0" name="Variable">TouchZoomID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1870841000566602" type="System">
+                            <param id="0" name="Variable">TouchZoomID</param>
+                            <param id="1" name="Value">Touch.TouchID</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5578779835104341" type="System">
+                            <param id="0" name="Variable">TouchStartDistance</param>
+                            <param id="1" name="Value">distance(Touch.XForID(TouchPanID, &quot;UI&quot;), Touch.YForID(TouchPanID, &quot;UI&quot;), Touch.XForID(TouchZoomID, &quot;UI&quot;), Touch.YForID(TouchZoomID, &quot;UI&quot;))</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3147688449307299" type="System">
+                            <param id="0" name="Variable">InitialScale</param>
+                            <param id="1" name="Value">LayoutScale</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9333301957638164" type="System">
+                            <param id="0" name="Variable">TouchLastX</param>
+                            <param id="1" name="Value">(Touch.XForID(TouchPanID, &quot;UI&quot;) + Touch.XForID(TouchZoomID, &quot;UI&quot;)) / 2</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2565196267903226" type="System">
+                            <param id="0" name="Variable">TouchLastY</param>
+                            <param id="1" name="Value">(Touch.YForID(TouchPanID, &quot;UI&quot;) + Touch.YForID(TouchZoomID, &quot;UI&quot;)) / 2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>While we have a touch to pan with, and we&apos;re not zooming, offset the scroll position by the change in position of the touch. This makes the view scroll with the touch. Note we also need to take in to account the layout scale to pan correctly at different zoom levels.</comment>
+        <comment>On calcule le vecteur X et Y entre la derniere position touchée enregistrée au tactile et celle actuelle. </comment>
+        <event-block sid="2493889150973827">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="6549636104496733" type="System">
+                    <param id="0" name="Variable">TouchPanID</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="3817211160377995" type="System">
+                    <param id="0" name="Variable">TouchZoomID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">-1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="7359335180814227" type="Camera">
+                    <param id="0" name="Instance variable">vecteurX</param>
+                    <param id="1" name="Value">(Touch.X(&quot;UI&quot;) - TouchLastX ) / LayoutScale</param>
+                </action>
+                <action id="-10" name="Set value" sid="3679474831692604" type="Camera">
+                    <param id="0" name="Instance variable">vecteurY</param>
+                    <param id="1" name="Value">(Touch.Y(&quot;UI&quot;) - TouchLastY )/ LayoutScale</param>
+                </action>
+                <action id="-9" name="Set value" sid="9216638105429426" type="System">
+                    <param id="0" name="Variable">TouchLastX</param>
+                    <param id="1" name="Value">Touch.X(&quot;UI&quot;)</param>
+                </action>
+                <action id="-9" name="Set value" sid="8283399581304729" type="System">
+                    <param id="0" name="Variable">TouchLastY</param>
+                    <param id="1" name="Value">Touch.Y(&quot;UI&quot;)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Si il y a eu un mouvement sur le tactile, on déplace la caméra manuellement (La caméra ne suit plus le héro).</comment>
+                <event-block any="1" sid="6098067315645019">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="2633029711685102" type="Camera">
+                            <param id="0" name="Instance variable">vecteurX</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="1125298556470943" type="Camera">
+                            <param id="0" name="Instance variable">vecteurY</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="1810533540736034" type="Camera">
+                            <param id="0" name="X">self.X - self.vecteurX</param>
+                            <param id="1" name="Y">self.Y - self.vecteurY</param>
+                        </action>
+                        <action id="0" name="Call function" sid="3048900448877037" type="Function">
+                            <param id="0" name="Name">&quot;cameraTesterPosition&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>If there is a second touch we&apos;re zooming with, adjust the layout scale based on the distance between the touches. Also calculate the new mid-point of the two touches and keep panning based on that.</comment>
+        <event-block disabled="1" sid="2283767655284774">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="665254234936618" type="System">
+                    <param id="0" name="Variable">TouchZoomID</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable comment="The current distance apart of the touches (for zoom)" constant="0" name="TouchCurrentDistance" sid="3235584901369375" static="0" type="number">0</variable>
+                <variable comment="The current average position of the touches for panning while zooming" constant="0" name="TouchCurrentMidX" sid="3398643556231438" static="0" type="number">0</variable>
+                <variable comment="The current average position of the touches for panning while zooming" constant="0" name="TouchCurrentMidY" sid="6383391697380131" static="0" type="number">0</variable>
+                <event-block disabled="1" sid="3413898855837678">
+                    <conditions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="4406676864194556" type="System">
+                            <param id="0" name="Variable">TouchCurrentMidX</param>
+                            <param id="1" name="Value">(Touch.XForID(TouchPanID, &quot;UI&quot;) + Touch.XForID(TouchZoomID, &quot;UI&quot;)) / 2</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5994279018200539" type="System">
+                            <param id="0" name="Variable">TouchCurrentMidY</param>
+                            <param id="1" name="Value">(Touch.YForID(TouchPanID, &quot;UI&quot;) + Touch.YForID(TouchZoomID, &quot;UI&quot;)) / 2</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="601284048218052" type="System">
+                            <param id="0" name="Variable">TouchCurrentDistance</param>
+                            <param id="1" name="Value">distance(Touch.XForID(TouchPanID, &quot;UI&quot;), Touch.YForID(TouchPanID, &quot;UI&quot;), Touch.XForID(TouchZoomID, &quot;UI&quot;), Touch.YForID(TouchZoomID, &quot;UI&quot;))</param>
+                        </action>
+                        <action id="-20" name="Set layout scale" sid="2656595580136812" type="System">
+                            <param id="0" name="Scale">InitialScale * (TouchCurrentDistance / TouchStartDistance)</param>
+                        </action>
+                        <action id="-7" name="Scroll to position" sid="6399867917697658" type="System">
+                            <param id="0" name="X">scrollx - (TouchCurrentMidX - TouchLastX) / LayoutScale</param>
+                            <param id="1" name="Y">scrolly - (TouchCurrentMidY - TouchLastY) / LayoutScale</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5033386815227384" type="System">
+                            <param id="0" name="Variable">TouchLastX</param>
+                            <param id="1" name="Value">TouchCurrentMidX</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7754860776137393" type="System">
+                            <param id="0" name="Variable">TouchLastY</param>
+                            <param id="1" name="Value">TouchCurrentMidY</param>
+                        </action>
+                        <action id="-7" name="Scroll to position" sid="889630274280597" type="System">
+                            <param id="0" name="X">scrollx - (TouchCurrentMidX - TouchLastX) / LayoutScale</param>
+                            <param id="1" name="Y">scrolly - (TouchCurrentMidY - TouchLastY) / LayoutScale</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>When the touch we are panning or zooming with ends, reset the stored touch ID so we stop the action.</comment>
+        <event-block sid="5282307584716373">
+            <conditions>
+                <condition id="1" name="On any touch end" sid="2230082506287284" type="Touch" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>If we stop the first (panning) touch while zooming, make the second (zooming) touch become the new panning touch.</comment>
+                <event-block sid="7599745779339336">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7691125382003955" type="System">
+                            <param id="0" name="Variable">TouchPanID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Touch.TouchID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1659436143735418" type="System">
+                            <param id="0" name="Variable">TouchPanID</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="4644932963845084" type="Camera">
+                            <param id="0" name="Instance variable">vecteurX</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="5068882016761246" type="Camera">
+                            <param id="0" name="Instance variable">vecteurY</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="2824009903367384">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="2368119818124467" type="System">
+                                    <param id="0" name="Variable">TouchZoomID</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="5641621708815293" type="System">
+                                    <param id="0" name="Variable">TouchPanID</param>
+                                    <param id="1" name="Value">TouchZoomID</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="4247982339077827" type="System">
+                                    <param id="0" name="Variable">TouchZoomID</param>
+                                    <param id="1" name="Value">-1</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="3229317067940959" type="System">
+                                    <param id="0" name="Variable">TouchLastX</param>
+                                    <param id="1" name="Value">Touch.XForID(TouchPanID, &quot;UI&quot;)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="4920902252704141" type="System">
+                                    <param id="0" name="Variable">TouchLastY</param>
+                                    <param id="1" name="Value">Touch.YForID(TouchPanID, &quot;UI&quot;)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="5677249150174242">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="8616165197508195" type="System">
+                            <param id="0" name="Variable">TouchZoomID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Touch.TouchID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="4720787938108325" type="System">
+                            <param id="0" name="Variable">TouchZoomID</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="659846937949139" type="System">
+                            <param id="0" name="Variable">TouchLastX</param>
+                            <param id="1" name="Value">Touch.XForID(TouchPanID, &quot;UI&quot;)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5643613683622533" type="System">
+                            <param id="0" name="Variable">TouchLastY</param>
+                            <param id="1" name="Value">Touch.YForID(TouchPanID, &quot;UI&quot;)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Display the touch IDs being used to pan or zoom.</comment>
+        <event-block sid="2387557548924913">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="5516132148064796" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="3880534805262552" type="Text">
+                    <param id="0" name="Text">&quot;Panning with touch ID: &quot; &amp; TouchPanID &amp; newline &amp; &quot;Zooming with touch ID: &quot; &amp; TouchZoomID</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

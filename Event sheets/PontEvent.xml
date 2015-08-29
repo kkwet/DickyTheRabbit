@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>PontEvent</name>
+    <events>
+        <event-block sid="1103013170557011">
+            <conditions>
+                <condition id="17" name="On tap object" sid="4390467544032983" type="Touch">
+                    <param id="0" name="Object">PontHB</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4525412178497202" type="PontHB">
+                    <param id="0" name="Instance variable">hasMoved</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-19" name="Rotate counter-clockwise" sid="4361194874324743" type="PontHB">
+                    <param id="0" name="Degrees">90</param>
+                </action>
+                <action id="-2" name="Set Y" sid="7047496929186292" type="PontHB">
+                    <param id="0" name="Y">self.y  + 2 * TAILLECARREAUWIDTH</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="551095435989963" type="PontHB">
+                    <param id="0" name="Instance variable">hasMoved</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1747731102558534">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="567106630922629" type="PontHB">
+                    <param id="0" name="Object">DickyHB</param>
+                </condition>
+                <condition behavior="Platform" id="4" name="Is falling" sid="5428600066122548" type="DickyHB" />
+            </conditions>
+            <actions>
+                <action behavior="Solid" id="0" name="Set enabled" sid="4513767059352801" type="PontHB">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

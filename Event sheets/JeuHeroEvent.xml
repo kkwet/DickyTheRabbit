@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>JeuHeroEvent</name>
+    <events>
+        <event-block sid="8031618359149967">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="9225494467061085" type="System" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="1117976909473816" type="DickyHB">
+                    <param id="0" name="Instance variable">lastPositionX</param>
+                    <param id="1" name="Value">self.X</param>
+                </action>
+                <action id="-10" name="Set value" sid="9335024022827876" type="DickyHB">
+                    <param id="0" name="Instance variable">lastPositionY</param>
+                    <param id="1" name="Value">self.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5861134362565449">
+            <conditions>
+                <condition id="0" name="On function" sid="2923588126082836" type="Function">
+                    <param id="0" name="Name">&quot;heroMarcherDroite&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="8" name="Set vector X" sid="8542275223523368" type="DickyHB">
+                    <param id="0" name="Vector X">100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9413770852562314">
+            <conditions>
+                <condition id="0" name="On function" sid="501481737817375" type="Function">
+                    <param id="0" name="Name">&quot;heroMarcherGauche&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <comment>A chaque tick, on récupére l&apos;écart de déplacement en X et Y du héro pour savoir de combien déplacer la caméra en auto scroll.</comment>
+        <event-block sid="7092733711494199">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="6143773890098182" type="System" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="9573674803275088" type="DickyHB">
+                    <param id="0" name="Instance variable">deltaX</param>
+                    <param id="1" name="Value">self.X - self.lastPositionX</param>
+                </action>
+                <action id="-10" name="Set value" sid="3315236739505977" type="DickyHB">
+                    <param id="0" name="Instance variable">lastPositionX</param>
+                    <param id="1" name="Value">self.X</param>
+                </action>
+                <action id="-10" name="Set value" sid="2416744528188266" type="DickyHB">
+                    <param id="0" name="Instance variable">deltaY</param>
+                    <param id="1" name="Value">self.Y - self.lastPositionY</param>
+                </action>
+                <action id="-10" name="Set value" sid="2041713363580439" type="DickyHB">
+                    <param id="0" name="Instance variable">lastPositionY</param>
+                    <param id="1" name="Value">self.Y</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Si on ne déplace pas la caméra avec le tactile, la caméra suit le héro.</comment>
+                <comment>Ce bout de code serait plus lisible dans la classe caméra, mais il faut que le déplacement se fasse juste après la récupération du delta.</comment>
+                <event-block sid="9082602399727902">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="7113520398686898" type="Camera">
+                            <param id="0" name="Instance variable">vecteurX</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="9118389054302031" type="Camera">
+                            <param id="0" name="Instance variable">vecteurY</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="4693602806968086" type="Camera">
+                            <param id="0" name="X">self.X + DickyHB.deltaX</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="7066938126492201" type="Camera">
+                            <param id="0" name="Y">self.Y + DickyHB.deltaY</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

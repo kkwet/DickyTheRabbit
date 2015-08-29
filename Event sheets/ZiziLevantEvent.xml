@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>ZiziLevantEvent</name>
+    <events>
+        <event-block sid="7141793545465838">
+            <conditions>
+                <condition id="17" name="On tap object" sid="9211031089761582" type="Touch">
+                    <param id="0" name="Object">ZiziLevant</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Set Y" sid="5711755227913622" type="ZiziLevant">
+                    <param id="0" name="Y">self.Y + 120</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

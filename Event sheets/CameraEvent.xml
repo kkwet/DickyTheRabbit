@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>CameraEvent</name>
+    <events>
+        <comment>On teste si la caméra affiche bien le héro à l&apos;écran, si elle sort des bornes on la replace.</comment>
+        <event-block sid="830719642361211">
+            <conditions>
+                <condition id="0" name="On function" sid="2522108450918432" type="Function">
+                    <param id="0" name="Name">&quot;cameraTesterPosition&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="8049208648047777">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="6996867043261587" type="System">
+                            <param id="0" name="First value">Camera.X</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">Camera.maxX</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="6692014562325484" type="Camera">
+                            <param id="0" name="X">self.maxX</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1446492205357837">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="7837428665632023" type="System">
+                            <param id="0" name="First value">Camera.X</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">Camera.minX</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="5215570492669081" type="Camera">
+                            <param id="0" name="X">self.minX</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8634005126651525">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="2845818771516746" type="System">
+                            <param id="0" name="First value">Camera.Y</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">Camera.minY</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Set Y" sid="6612178754521041" type="Camera">
+                            <param id="0" name="Y">self.minY</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8540275750267666">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="7401927141064133" type="System">
+                            <param id="0" name="First value">Camera.Y</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">Camera.maxY</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Set Y" sid="2362789992961425" type="Camera">
+                            <param id="0" name="Y">self.maxY</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="3526385176426527">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="460446020098195" type="System" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="6116685023971277" type="Camera">
+                    <param id="0" name="Instance variable">minX</param>
+                    <param id="1" name="Value">DickyHB.ImagePointX(2) - OriginalWindowWidth / 2  + 3 * DickyHB.Width</param>
+                </action>
+                <action id="-10" name="Set value" sid="4986322940459689" type="Camera">
+                    <param id="0" name="Instance variable">maxX</param>
+                    <param id="1" name="Value">DickyHB.ImagePointX(1) + OriginalWindowWidth / 2 - 3 * DickyHB.Width</param>
+                </action>
+                <action id="-10" name="Set value" sid="4177388997050215" type="Camera">
+                    <param id="0" name="Instance variable">minY</param>
+                    <param id="1" name="Value">DickyHB.ImagePointY(3) - OriginalWindowHeight / 2 + 3 * DickyHB.Height</param>
+                </action>
+                <action id="-10" name="Set value" sid="5993551361803617" type="Camera">
+                    <param id="0" name="Instance variable">maxY</param>
+                    <param id="1" name="Value">DickyHB.ImagePointY(4) + OriginalWindowHeight / 2 - 3 * DickyHB.Height</param>
+                </action>
+                <action id="0" name="Call function" sid="607593284305441" type="Function">
+                    <param id="0" name="Name">&quot;cameratesterPosition&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

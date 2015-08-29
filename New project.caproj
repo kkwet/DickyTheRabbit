@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>New project</name>
+    <description></description>
+    <version>1.0.0.0</version>
+    <author></author>
+    <author-email></author-email>
+    <author-website>http://</author-website>
+    <app-id>com.mycompany.myapp</app-id>
+    <unique-id>2m2oqhlgof90t</unique-id>
+    <saved-with-version>20600</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
+        <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>1280</width>
+        <height>720</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <first-layout>Title</first-layout>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Scale inner</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Landscape</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D asm.js</prop>
+        <prop name="Preview browser">Chrome</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-type name="Touch" sid="3671441639624133">
+            <plugin id="Touch" />
+        </object-type>
+        <object-type name="DickyHB" sid="8936736087387461">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="0 -&gt; droite , 1 -&gt; gauche" name="sens" sid="4480213730009752" type="number" />
+                <instance-variable comment="Distance parcourue en X par le héro." name="deltaX" sid="2694801594529958" type="number" />
+                <instance-variable comment="La valeur en X de la dernière position du héro." name="lastPositionX" sid="9144304802892981" type="number" />
+                <instance-variable name="deltaY" sid="9582712763710336" type="number" />
+                <instance-variable name="lastPositionY" sid="9917903815781079" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Platform" sid="877740744946918">
+                    <behavior id="Platform" />
+                </behavior-type>
+            </behaviors>
+            <container>
+                <type>DickyHB</type>
+                <type>DickySkin</type>
+            </container>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="302092277263034" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="1">
+                        <image-point name="gauche" x="0" y="0.5" />
+                        <image-point name="droite" x="1" y="0.5" />
+                        <image-point name="haut" x="0.5" y="0" />
+                        <image-point name="bas" x="0.5" y="1" />
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Plateforme" sid="3851870348886579">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="1979269340883125">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="0" repeatto="0" sid="1337252194769369" speed="0">
+                    <frame duration="1" hotspotX="0" hotspotY="1" />
+                    <frame duration="1" hotspotX="0" hotspotY="1" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Text" sid="9399908180419594">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Titre" sid="7997925863754274">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Commencer" sid="758729208246459">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="CommencerHB" sid="7076708951947294">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3611507128753999" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="PontHB" sid="3605461251877215">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Côté vers lequel il va s&apos;abaisser 0-&gt; Gauche, 1-&gt; Droite" name="sens" sid="8445590884217618" type="number" />
+                <instance-variable comment="Si le pont levis a été déplacé." name="hasMoved" sid="4465325827549132" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Solid" sid="9664203193749227">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2047158032824618" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="1" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="DickySkin" sid="1998378998950516">
+            <plugin id="Sprite" />
+            <container>
+                <type>DickyHB</type>
+                <type>DickySkin</type>
+            </container>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5695804562768065" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="1" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Function" sid="3567538923705202">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="Camera" sid="9678498547622412">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="vecteurX" sid="7370134141419965" type="number" />
+                <instance-variable name="vecteurY" sid="3838700455832767" type="number" />
+                <instance-variable comment="Ecart entre caméro et le bord de l&apos;écran" name="offsetX" sid="709990024592678" type="number" />
+                <instance-variable name="maxX" sid="2660225851663356" type="number" />
+                <instance-variable name="maxY" sid="176930605768202" type="number" />
+                <instance-variable name="minX" sid="1518397128288629" type="number" />
+                <instance-variable name="minY" sid="255147354756109" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="ScrollTo" sid="4744250794314886">
+                    <behavior id="scrollto" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7925642608791923" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="SortieHB" sid="3170877766599141">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7007854237508084" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="1" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="ZiziLevant" sid="8050340566294286">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="8280613931500874">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4785129038326795" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="1" />
+                </animation>
+            </animation-folder>
+        </object-type>
+    </object-folder>
+    <families />
+    <layout-folder>
+        <layout>Niveau1.xml</layout>
+        <layout>Title.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>JeuTouchEvent.xml</event-sheet>
+        <event-sheet>TitleEvent.xml</event-sheet>
+        <event-sheet>JeuHeroEvent.xml</event-sheet>
+        <event-sheet>JeuMainEvent.xml</event-sheet>
+        <event-sheet>CameraEvent.xml</event-sheet>
+        <event-sheet>PontEvent.xml</event-sheet>
+        <event-sheet>SortieEvent.xml</event-sheet>
+        <event-sheet>ZiziLevantEvent.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Touch" uid="0">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
+        <global-instance type="Function" uid="15" />
+    </global-instances>
+    <sounds-folder />
+    <music-folder />
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>

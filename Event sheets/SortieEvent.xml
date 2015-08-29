@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>SortieEvent</name>
+    <events>
+        <event-block sid="7553307235215571">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="5255781752516482" type="DickyHB">
+                    <param id="0" name="Object">SortieHB</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="8161489958361066" type="System">
+                    <param id="0" name="Layout">Title</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
