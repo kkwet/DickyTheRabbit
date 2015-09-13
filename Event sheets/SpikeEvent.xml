@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>SpikeEvent</name>
+    <events>
+        <event-block sid="1853946712878719">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7241701034560054" type="Spike">
+                    <param id="0" name="Object">DickyHB</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="2424882505248525" type="DickyHB" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
