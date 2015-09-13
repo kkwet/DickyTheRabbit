@@ -15,5 +15,15 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="8637530156921686">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="202338084364621" type="ZiziLevant">
+                    <param id="0" name="Object">DickyHB</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1301055295761181" type="DickyHB" />
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

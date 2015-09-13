@@ -10,16 +10,17 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout order="0">Niveau1</layout>
-        <layout order="4">Title</layout>
-        <event-sheet order="1">JeuTouchEvent</event-sheet>
-        <event-sheet order="2">JeuHeroEvent</event-sheet>
-        <event-sheet order="3">JeuMainEvent</event-sheet>
-        <event-sheet order="5">TitleEvent</event-sheet>
-        <event-sheet order="6">CameraEvent</event-sheet>
-        <event-sheet order="7">PontEvent</event-sheet>
-        <event-sheet order="8">SortieEvent</event-sheet>
-        <event-sheet active="1" order="9">ZiziLevantEvent</event-sheet>
+        <layout order="8">Niveau1</layout>
+        <layout order="3">Title</layout>
+        <event-sheet order="0">JeuTouchEvent</event-sheet>
+        <event-sheet order="1">JeuHeroEvent</event-sheet>
+        <event-sheet active="1" order="2">JeuMainEvent</event-sheet>
+        <event-sheet order="4">TitleEvent</event-sheet>
+        <event-sheet order="5">CameraEvent</event-sheet>
+        <event-sheet order="6">PontEvent</event-sheet>
+        <event-sheet order="7">SortieEvent</event-sheet>
+        <event-sheet order="9">ZiziLevantEvent</event-sheet>
+        <event-sheet order="10">SpikeEvent</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -44,5 +45,6 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Camera/" />
         <folder expanded="1" path="animation-folder/SortieHB/" />
         <folder expanded="1" path="animation-folder/ZiziLevant/" />
+        <folder expanded="1" path="animation-folder/Spike/" />
     </folders-expanded>
 </c2uistate>

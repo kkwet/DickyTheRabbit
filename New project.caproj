@@ -8,7 +8,7 @@
     <author-website>http://</author-website>
     <app-id>com.mycompany.myapp</app-id>
     <unique-id>2m2oqhlgof90t</unique-id>
-    <saved-with-version>20600</saved-with-version>
+    <saved-with-version>21202</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
@@ -184,6 +184,19 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="Spike" sid="9899554423511794">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="9071817361229661">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5809490387542026" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
@@ -199,6 +212,7 @@
         <event-sheet>PontEvent.xml</event-sheet>
         <event-sheet>SortieEvent.xml</event-sheet>
         <event-sheet>ZiziLevantEvent.xml</event-sheet>
+        <event-sheet>SpikeEvent.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Touch" uid="0">
